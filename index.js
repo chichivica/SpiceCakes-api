@@ -3,12 +3,14 @@
  */
 
 let http = require('http'),
-  app = require('../app');
+  serverConfig = require('config').get('server'),
+  models = require('./models'),
+  app = require('./app');
 
 /**
  * Get port from environment and store in Express.
  */
-let port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(process.env.PORT || serverConfig.port);
 
 app.set('port', port);
 /**
@@ -16,16 +18,16 @@ app.set('port', port);
  */
 let server = http.createServer(app);
 
-// models.sequelize.sync().then(function () {
-//   /**
-//    * Listen on provided port, on all network interfaces.
-//    */
-//   server.listen(port, function () {
-//     debug('Express server listening on port ' + server.address().port);
-//   });
-//   server.on('error', onError);
-//   server.on('listening', onListening);
-// });
+models.sequelize.sync().then(function () {
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+  server.listen(port, function () {
+    console.log('Express server listening on port ' + server.address().port);
+  });
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
 
 /**
  * Normalize a port into a number, string, or false.
@@ -45,8 +47,6 @@ function normalizePort(val) {
 
   return false;
 }
-
-
 
 
 /**
@@ -86,6 +86,6 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  console.log('Listening on ' + bind);
 }
 

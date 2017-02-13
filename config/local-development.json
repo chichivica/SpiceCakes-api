@@ -1,5 +1,5 @@
 {
   "database":{
-    "connectionString" : ""
+    "connectionString" : "postgres://chichivica:941dfytr@localhost:5432/testdb"
   }
 }

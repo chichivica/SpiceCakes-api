@@ -1,5 +1,8 @@
 {
-  "database":{
-    "connectionString" : ""
+  "database": {
+    "connectionString": "postgres://hrnfotcz:tjehIJQ5xEs203yEFQdyEak3R4ZnJD9O@horton.elephantsql.com:5432/hrnfotcz"
+  },
+  "server": {
+    "port": "3009"
   }
 }

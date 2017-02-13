@@ -2,9 +2,10 @@
   "name": "spicecakes-api",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,12 @@
     "config": "^1.25.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.1",
+    "lodash": "^4.17.4",
     "morgan": "^1.8.1",
+    "pg": "^6.1.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.2",
+    "sequelize-cli": "^2.5.1",
     "serve-favicon": "^2.3.2"
   }
 }
