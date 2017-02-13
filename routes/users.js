@@ -55,7 +55,7 @@ router.delete('/:userId', (req, res) => {
 });
 
 /**
- * @api {get} /api/users get full list of users
+ * @api {get} /api/users Get full list of users
  * @apiName GetUsers
  * @apiGroup Users
  * @apiError 500 Internal error
@@ -73,10 +73,10 @@ router.delete('/:userId', (req, res) => {
  *  "firstName": "John",
  *  "lastName": "Normand",
  *  "updatedAt": "2017-02-13T12:28:09.083Z",
- *  "createdAt": "2017-02-13T12:28:09.083Z"
- * }
- * ...
- * ]
+   "createdAt": "2017-02-13T12:28:09.083Z"
+  }
+  ...
+  ]
  */
 router.get('/', function (req, res) {
   models.User.findAll({})
