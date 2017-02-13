@@ -6,7 +6,7 @@ let models = require('../models'),
   router = express.Router();
 
 /**
- * @api {post} /api/users
+ * @api {post} /api/users create new user
  * @apiName CreateUser
  * @apiGroup Users
  * @apiError 500 Internal error
