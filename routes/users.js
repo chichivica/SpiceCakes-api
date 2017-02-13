@@ -55,7 +55,7 @@ router.delete('/:userId', (req, res) => {
 });
 
 /**
- * @api {get} /api/users
+ * @api {get} /api/users get full list of users
  * @apiName GetUsers
  * @apiGroup Users
  * @apiError 500 Internal error
