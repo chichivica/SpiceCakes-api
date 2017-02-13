@@ -34,7 +34,7 @@ router.post('/', function (req, res) {
 
 /**
  * @api {delete} /api/users/:userId Delete user by Id
- * @apiName CreateUser
+ * @apiName DeleteUser
  * @apiGroup Users
  * @apiError 500 Internal error
  * @apiSuccessExample Success-Response:
@@ -56,7 +56,7 @@ router.delete('/:userId', (req, res) => {
 
 /**
  * @api {get} /api/users
- * @apiName CreateUser
+ * @apiName GetUsers
  * @apiGroup Users
  * @apiError 500 Internal error
  * @apiSuccessExample Success-Response:

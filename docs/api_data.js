@@ -34,7 +34,7 @@ define({ "api": [
     "type": "delete",
     "url": "/api/users/:userId",
     "title": "Delete user by Id",
-    "name": "CreateUser",
+    "name": "DeleteUser",
     "group": "Users",
     "error": {
       "fields": {
@@ -65,7 +65,7 @@ define({ "api": [
     "type": "get",
     "url": "/api/users",
     "title": "",
-    "name": "CreateUser",
+    "name": "GetUsers",
     "group": "Users",
     "error": {
       "fields": {
