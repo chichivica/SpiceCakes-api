@@ -1,6 +1,6 @@
 {
   "name": "SpiceCakes-api",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "api documentation",
   "title": "SpiceCakes api documentation",
   "url": "https://github.com/chichivica/SpiceCakes-api/tree/master/apidoc",
@@ -9,7 +9,7 @@
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2017-02-13T13:15:16.675Z",
+    "time": "2017-02-13T13:20:53.344Z",
     "url": "http://apidocjs.com",
     "version": "0.17.5"
   }

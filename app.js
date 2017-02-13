@@ -9,7 +9,8 @@ let express = require('express'),
   bodyParser = require('body-parser');
 
 
-let users = require('./routes/users');
+let users = require('./routes/users'),
+  orders = require('./routes/orders');
 
 
 let app = express();
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/users', users);
+app.use('/api/orders', orders);
 
 
 // catch 404 and forward to error handler
@@ -37,16 +39,14 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   console.error(JSON.stringify(err, null, 2));
 
-  app.use((err, req, res, next) => {
-    if (req.xhr) {
-      res.status(err.status || 500).send({
-        message: err.message,
-      });
-    }
-    else {
-      res.status(err.status || 500).send(err.message)
-    }
-  });
+  if (req.xhr) {
+    res.status(err.status || 500).send({
+      message: err.message,
+    });
+  }
+  else {
+    res.status(err.status || 500).send(err.message)
+  }
 });
 
 

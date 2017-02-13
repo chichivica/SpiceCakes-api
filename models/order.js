@@ -21,14 +21,16 @@ module.exports = function (sequelize, DataTypes) {
           foreignKey: {
             allowNull: true,
             name: "managerId"
-          }
+          },
+          as: "manager"
         });
         Order.belongsTo(models.User, {
           onDelete: "RESTRICT",
           foreignKey: {
             allowNull: true,
             name: "clientId"
-          }
+          },
+          as: "client"
         });
       }
     },

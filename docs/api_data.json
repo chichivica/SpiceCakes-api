@@ -83,7 +83,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "[\n{\n \"id\": 8,\n \"firstName\": \"John\",\n \"lastName\": \"Normand\",\n \"updatedAt\": \"2017-02-13T12:28:09.083Z\",\n \"createdAt\": \"2017-02-13T12:28:09.083Z\"\n},\n * {\n \"id\": 8,\n \"firstName\": \"John\",\n \"lastName\": \"Normand\",\n \"updatedAt\": \"2017-02-13T12:28:09.083Z\",\n   \"createdAt\": \"2017-02-13T12:28:09.083Z\"\n  }\n  ...\n  ]",
+          "content": "[\n  {\n     \"id\": 8,\n     \"firstName\": \"John\",\n     \"lastName\": \"Normand\",\n     \"updatedAt\": \"2017-02-13T12:28:09.083Z\",\n     \"createdAt\": \"2017-02-13T12:28:09.083Z\"\n },\n {\n     \"id\": 8,\n     \"firstName\": \"John\",\n     \"lastName\": \"Normand\",\n     \"updatedAt\": \"2017-02-13T12:28:09.083Z\",\n     \"createdAt\": \"2017-02-13T12:28:09.083Z\"\n }\n]",
           "type": "json"
         }
       ]

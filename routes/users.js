@@ -6,9 +6,14 @@ let models = require('../models'),
   router = express.Router();
 
 /**
- * @api {post} /api/users create new user
+ * @api {post} /api/users Create new user
  * @apiName CreateUser
  * @apiGroup Users
+ * @apiParamExample {json} Request-Example:
+ * {
+ *    "firstName" : "John",
+ *    "lastName" : "Normand"
+ * }
  * @apiError 500 Internal error
  * @apiSuccessExample Success-Response:
  * {
@@ -33,17 +38,18 @@ router.post('/', function (req, res) {
 });
 
 /**
- * @api {delete} /api/users/:userId Delete user by Id
+ * @api {delete} /api/users/:id Delete user by Id
  * @apiName DeleteUser
+ * @apiParam {Number} id of the user which needs to be deleted
  * @apiGroup Users
  * @apiError 500 Internal error
  * @apiSuccessExample Success-Response:
  *  HTTP/1.1 200 OK
  */
-router.delete('/:userId', (req, res) => {
+router.delete('/:id', (req, res) => {
   models.User.destroy({
     where: {
-      id: req.params.userId
+      id: req.params.id
     }
   })
     .then(() => {
@@ -61,27 +67,53 @@ router.delete('/:userId', (req, res) => {
  * @apiError 500 Internal error
  * @apiSuccessExample Success-Response:
  * [
+ *   {
+ *      "id": 8,
+ *      "firstName": "John",
+ *      "lastName": "Normand",
+ *      "updatedAt": "2017-02-13T12:28:09.083Z",
+ *      "createdAt": "2017-02-13T12:28:09.083Z"
+ *  },
+ *  {
+ *      "id": 8,
+ *      "firstName": "John",
+ *      "lastName": "Normand",
+ *      "updatedAt": "2017-02-13T12:28:09.083Z",
+ *      "createdAt": "2017-02-13T12:28:09.083Z"
+ *  }
+ *]
+ */
+router.get('/', function (req, res) {
+  models.User.findAll({})
+    .then(function (users) {
+      res.send(users);
+    });
+});
+
+
+/**
+ * @api {post} /api/users/:id Create new user
+ * @apiName FindUser
+ * @apiGroup Users
+ * @apiParam {Number} id of the user to find with
+ * @apiError 500 Internal error
+ * @apiSuccessExample Success-Response:
  * {
  *  "id": 8,
  *  "firstName": "John",
  *  "lastName": "Normand",
  *  "updatedAt": "2017-02-13T12:28:09.083Z",
  *  "createdAt": "2017-02-13T12:28:09.083Z"
- * },
- *  * {
- *  "id": 8,
- *  "firstName": "John",
- *  "lastName": "Normand",
- *  "updatedAt": "2017-02-13T12:28:09.083Z",
-   "createdAt": "2017-02-13T12:28:09.083Z"
-  }
-  ...
-  ]
+ * }
  */
-router.get('/', function (req, res) {
-  models.User.findAll({})
-    .then(function (users) {
-      res.send(users);
+router.get('/:id', function (req, res) {
+  models.User.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(user => {
+      res.send(user);
     });
 });
 
