@@ -3,6 +3,7 @@
  */
 let models = require('../models'),
   express = require('express'),
+  events = require('events'),
   router = express.Router();
 
 /**
