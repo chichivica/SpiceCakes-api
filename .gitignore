@@ -43,7 +43,7 @@ typings/
 
 # Optional npm cache directory
 .npm
-.idea
+.idea/
 
 # Optional eslint cache
 .eslintcache
@@ -59,3 +59,5 @@ typings/
 
 # dotenv environment variables file
 .env
+
+config/local-development.json
