@@ -12,5 +12,5 @@ In this project used:
 Documentation for this is used by using [ApiDoc](http://apidocjs.com/) tool with the following command
 
 ```
-apidoc -i SpiceCakes-api/ -o docs/
+pidoc -i routes/ -o docs/
 ```
