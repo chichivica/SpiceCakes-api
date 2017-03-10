@@ -1,0 +1,8 @@
+{
+  "database": {
+    "connectionString": "postgres://ivan:123456@localhost:5432/spicecakes"
+  },
+  "server": {
+    "port": "7075"
+  }
+}
