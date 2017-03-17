@@ -37,7 +37,7 @@ pipeline {
                         tools: [
                             [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'test1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
                         ])
-                    }
+                    },
                     "database": {
                         step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
                         thresholds: [
