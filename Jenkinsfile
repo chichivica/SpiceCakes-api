@@ -19,11 +19,13 @@ pipeline {
                 parallel (
                     "api": {
                         withEnv(["XUNIT_FILE=test1.xml"]) {
-                            sh 'mocha tests/* --reporter xunit --reporter-options output=test1.xml || true'
+                            sh 'mocha tests/* --reporter xunit-file || true'
                         }
                     },
                     "database": {
-                        sh 'mocha tests/* --reporter xunit --reporter-options output=test2.xml || true'
+                        withEnv(["XUNIT_FILE=test2.xml"]) {
+                            sh 'mocha tests/* --reporter xunit-file || true'
+                        }
                     }
                 )
             }
