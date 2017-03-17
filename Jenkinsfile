@@ -12,13 +12,20 @@ pipeline {
                 echo 'installing dependencies'
                 sh 'npm install'
                 sh 'sudo npm install -g mocha'
+
+                stash app
             }
         }
         stage('passing tests'){
             steps {
                 parallel (
                     "api": {
-                        sh 'mocha tests/* --reporter xunit --reporter-options output=test1.xml || true'
+                        environment {
+                            XUNIT_FILE='test1.xml'
+                        }
+                        script {
+                            sh 'mocha tests/* --reporter xunit --reporter-options output=test1.xml || true'
+                        }
                     },
                     "database": {
                         sh 'mocha tests/* --reporter xunit --reporter-options output=test2.xml || true'
