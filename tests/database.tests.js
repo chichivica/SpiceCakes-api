@@ -65,10 +65,10 @@ describe('database tests', () => {
       clientId: clientId
     })
       .then(createdOder => {
-        expect(createdOder.price).to.be.equal('1000'); //actually dunno wtf is this
+        expect(createdOder.price).to.be.equal('100'); //actually dunno wtf is this
         expect(createdOder.description).to.be.equal('bake for me smth');
       })
-      .then(() => done())
+      .then(done)
   });
 
 
