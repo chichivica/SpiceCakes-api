@@ -1,0 +1,7 @@
+<testsuites>
+<testsuite name="Mocha Tests" tests="3" failures="0" errors="0" skipped="0" timestamp="Fri, 17 Mar 2017 10:33:00 GMT" time="0.157">
+<testcase classname="database tests" name="create client" time="0.024"/>
+<testcase classname="database tests" name="create manager" time="0.005"/>
+<testcase classname="database tests" name="create simple order" time="0.007"/>
+</testsuite>
+</testsuites>
