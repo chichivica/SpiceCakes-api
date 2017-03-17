@@ -55,5 +55,19 @@ pipeline {
                 )
             }
         }
+        stage('deployment') {
+            when {
+                branch: 'beta'
+            }
+            steps {
+                echo 'deploy beta'
+            }
+            when {
+                branch: 'development'
+            }
+            steps {
+                echo 'deploy dev'
+            }
+        }
     }
 }
