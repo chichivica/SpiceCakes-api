@@ -18,6 +18,9 @@ pipeline {
             steps {
                 parallel (
                     "api": {
+                        environment {
+                            XUNIT_FILE=test1.xml
+                        }
                         sh 'mocha tests/* --reporter xunit --reporter-options output=test1.xml || true'
                     },
                     "database": {
