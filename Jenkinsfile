@@ -18,26 +18,11 @@ pipeline {
             steps {
                 parallel (
                     "overalltest": {
-                        echo 'testing'
-                        sh 'mocha tests/* --reporter xunit --reporter-options output=test1.xml || true'
-                        step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
-                        thresholds: [
-                            [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
-                            [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
-                        tools: [
-                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'test1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
-                        ])
+                        echo 'passed 1'
+
                     },
                     "specific": {
-                        echo 'testing'
-                        sh 'mocha tests/* --reporter xunit --reporter-options output=test2.xml || true'
-                        step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
-                        thresholds: [
-                            [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
-                            [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
-                        tools: [
-                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'test2.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
-                        ])
+                        echo 'passed 2'
                     }
                 )
             }
