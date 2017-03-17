@@ -36,7 +36,8 @@ describe('database tests', () => {
 
         clientId = createdUser.id;
       })
-      .then(() => done())
+      .should.be.fulfilled.then().should.notify(done)
+
   });
 
   let managerId;
@@ -53,7 +54,8 @@ describe('database tests', () => {
 
         managerId = createdUser.id;
       })
-      .then(() => done())
+      .should.be.fulfilled.then().should.notify(done)
+
   });
 
   it('create simple order', done => {
@@ -68,7 +70,7 @@ describe('database tests', () => {
         expect(createdOder.price).to.be.equal('100'); //actually dunno wtf is this
         expect(createdOder.description).to.be.equal('bake for me smth');
       })
-      .then(done)
+      .should.be.fulfilled.then().should.notify(done)
   });
 
 
