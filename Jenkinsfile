@@ -26,7 +26,6 @@ pipeline {
                     [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'xunit.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
                 ])
             }
-
         }
     }
 }
