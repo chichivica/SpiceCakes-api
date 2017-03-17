@@ -15,12 +15,12 @@ pipeline {
             }
         }
         stage('testing'){
-            parallel (
-                overalltest: {
-                    environment {
-                                XUNIT_FILE = 'testresult1.xml'
-                    }
-                    steps {
+            steps {
+                parallel (
+                    overalltest: {
+                        environment {
+                            XUNIT_FILE = 'testresult1.xml'
+                        }
                         echo 'testing'
                         sh 'mocha tests/* --reporter xunit-file || true'
                         step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
@@ -31,9 +31,8 @@ pipeline {
                             [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'testresult1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
                         ])
                     }
-                }
-            )
-
+                )
+            }
         }
     }
 }
