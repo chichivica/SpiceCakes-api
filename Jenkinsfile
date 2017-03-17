@@ -57,7 +57,7 @@ pipeline {
         }
         stage('deployment') {
             when {
-                branch: 'beta'
+                branch 'beta'
             }
             steps {
                 echo 'deploy beta'
