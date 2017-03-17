@@ -34,6 +34,7 @@ describe('simple api tests', () => {
         assert(!err, `api error ${err}`);
         expect(res.body.firstName).to.be.equal(firstName);
         expect(res.body.lastName).to.be.equal(lastName);
+        expect(res.body.id).to.be.a('number');
         done();
       })
   })

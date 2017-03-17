@@ -15,6 +15,9 @@ pipeline {
             }
         }
         stage('testing'){
+            environment {
+                XUNIT_FILE = 'testresult1.xml'
+            }
             steps {
                 echo 'testing'
                 sh 'mocha tests/* --reporter xunit-file || true'
@@ -23,7 +26,7 @@ pipeline {
                     [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
                     [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
                 tools: [
-                    [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'xunit.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
+                    [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'testresult1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
                 ])
             }
         }
