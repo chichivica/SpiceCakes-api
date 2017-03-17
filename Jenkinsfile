@@ -63,5 +63,13 @@ pipeline {
                 echo 'deploy beta'
             }
         }
+        stage('deployment') {
+            when {
+                branch 'development'
+            }
+            steps {
+                echo 'deploy development'
+            }
+        }
     }
 }
