@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo 'testing'
                 sh 'mocha tests/* --reporter xunit-file || true'
-                junit "xunit.xml"
+                xunit "xunit.xml"
             }
         }
     }
