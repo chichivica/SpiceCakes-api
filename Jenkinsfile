@@ -17,15 +17,26 @@ pipeline {
         stage('testing'){
             steps {
                 parallel (
-                    overalltest: {
+                    "overalltest": {
                         echo 'testing'
-                        sh 'mocha tests/* --reporter xunit-file || true'
+                        sh 'mocha tests/* --reporter xunit --reporter-options output=test1.xml || true'
                         step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
                         thresholds: [
                             [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
                             [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
                         tools: [
-                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'xunit.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
+                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'test1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
+                        ])
+                    },
+                    "specific": {
+                        echo 'testing'
+                        sh 'mocha tests/* --reporter xunit --reporter-options output=test2.xml || true'
+                        step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
+                        thresholds: [
+                            [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
+                            [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
+                        tools: [
+                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'test2.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
                         ])
                     }
                 )
