@@ -15,22 +15,24 @@ pipeline {
             }
         }
         stage('testing'){
-            overalltest: {
-                environment {
-                            XUNIT_FILE = 'testresult1.xml'
+            parallel (
+                overalltest: {
+                    environment {
+                                XUNIT_FILE = 'testresult1.xml'
+                    }
+                    steps {
+                        echo 'testing'
+                        sh 'mocha tests/* --reporter xunit-file || true'
+                        step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
+                        thresholds: [
+                            [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
+                            [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
+                        tools: [
+                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'testresult1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
+                        ])
+                    }
                 }
-                steps {
-                    echo 'testing'
-                    sh 'mocha tests/* --reporter xunit-file || true'
-                    step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1,
-                    thresholds: [
-                        [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
-                        [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
-                    tools: [
-                        [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'testresult1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
-                    ])
-                }
-            }
+            )
 
         }
     }
