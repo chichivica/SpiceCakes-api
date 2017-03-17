@@ -14,5 +14,12 @@ pipeline {
                 sh 'sudo npm install -g mocha'
             }
         }
+        stage('testing'){
+            steps {
+                echo 'testing'
+                sh 'mocha tests/* --reporter xunit-file || true'
+                junit "xunit.xml"
+            }
+        }
     }
 }
