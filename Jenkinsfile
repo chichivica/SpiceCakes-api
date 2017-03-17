@@ -17,6 +17,15 @@ pipeline {
         stage('testing'){
             steps {
                 parallel (
+                   "hop": {
+                       echo 'passed hop'
+
+                       },
+                   "gop": {
+                       echo 'passed gop'
+                   }
+                )
+                parallel (
                     "overalltest": {
                         echo 'passed 1'
 
