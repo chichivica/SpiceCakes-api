@@ -55,7 +55,7 @@ pipeline {
                 )
             }
         }
-        stage('deployment') {
+        stage('deployment beta') {
             when {
                 branch 'beta'
             }
@@ -63,7 +63,7 @@ pipeline {
                 echo 'deploy beta'
             }
         }
-        stage('deployment') {
+        stage('deployment development') {
             when {
                 branch 'development'
             }
