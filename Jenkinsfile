@@ -62,12 +62,6 @@ pipeline {
             steps {
                 echo 'deploy beta'
             }
-            when {
-                branch: 'development'
-            }
-            steps {
-                echo 'deploy dev'
-            }
         }
     }
 }
