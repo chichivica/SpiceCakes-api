@@ -18,8 +18,15 @@ pipeline {
             steps {
                 echo 'testing'
                 sh 'mocha tests/* --reporter xunit-file || true'
-                xunit "xunit.xml"
+                step([$class: 'XUnitBuilder', testTimeMargin: '5000', thresholdMode: 1,
+                thresholds: [
+                    [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '1'],
+                    [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
+                tools: [
+                    [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'xunit.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
+                ])
             }
+
         }
     }
 }
