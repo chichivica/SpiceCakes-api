@@ -29,7 +29,7 @@ describe('database tests', () => {
       lastName: 'Talalaev'
     })
       .then(createdUser => {
-        expect(createdUser.firstName).to.be.equal('Ivan');
+        expect(createdUser.firstName).to.be.equal('Ivan+');
         expect(createdUser.lastName).to.be.equal('Talalaev');
         expect(createdUser).to.have.property('updatedAt');
         expect(createdUser).to.have.property('createdAt');
@@ -47,7 +47,7 @@ describe('database tests', () => {
       lastName: 'Bond'
     })
       .then(createdUser => {
-        expect(createdUser.firstName).to.be.equal('James');
+        expect(createdUser.firstName).to.be.equal('James+');
         expect(createdUser.lastName).to.be.equal('Bond');
         expect(createdUser).to.have.property('updatedAt');
         expect(createdUser).to.have.property('createdAt');
@@ -67,7 +67,7 @@ describe('database tests', () => {
       clientId: clientId
     })
       .then(createdOder => {
-        expect(createdOder.price).to.be.equal('100'); //actually dunno wtf is this
+        expect(createdOder.price).to.be.equal('1000+'); //actually dunno wtf is this
         expect(createdOder.description).to.be.equal('bake for me smth');
       })
       .should.be.fulfilled.then().should.notify(done)
