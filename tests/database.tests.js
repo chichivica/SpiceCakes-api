@@ -29,7 +29,7 @@ describe('database tests', () => {
       lastName: 'Talalaev'
     })
       .then(createdUser => {
-        expect(createdUser.firstName).to.be.equal('Ivan+');
+        expect(createdUser.firstName).to.be.equal('Ivan');
         expect(createdUser.lastName).to.be.equal('Talalaev');
         expect(createdUser).to.have.property('updatedAt');
         expect(createdUser).to.have.property('createdAt');
@@ -47,7 +47,7 @@ describe('database tests', () => {
       lastName: 'Bond'
     })
       .then(createdUser => {
-        expect(createdUser.firstName).to.be.equal('James+');
+        expect(createdUser.firstName).to.be.equal('James');
         expect(createdUser.lastName).to.be.equal('Bond');
         expect(createdUser).to.have.property('updatedAt');
         expect(createdUser).to.have.property('createdAt');
