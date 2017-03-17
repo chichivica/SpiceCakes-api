@@ -20,11 +20,9 @@ pipeline {
             steps {
                 parallel (
                     "api": {
-                        sh 'export XUNIT_FILE=test1.xml'
                         sh 'mocha tests/* --reporter xunit --reporter-options output=test1.xml || true'
                     },
                     "database": {
-                        sh 'export XUNIT_FILE=test2.xml'
                         sh 'mocha tests/* --reporter xunit --reporter-options output=test2.xml || true'
                     }
                 )
