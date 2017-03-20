@@ -7,12 +7,13 @@ module.exports = {
     {
       name: "SpiceCakes-API",
       script: "index.js",
-      listen_timeout: 900000,
-      instances: "2",
+      instances: "MAX",
       exec_mode: "cluster",
       env: {
         NODE_ENV: "development"
       },
+      listen_timeout: 900000,
+      wait_ready: true
     },
   ]
 };

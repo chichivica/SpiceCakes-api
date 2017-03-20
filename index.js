@@ -24,10 +24,13 @@ models.sequelize.sync().then(function () {
    */
   server.listen(port, function () {
     console.log('Express server listening on port ' + server.address().port);
+    process.send('ready'); //tell PM2 we are ready
   });
   server.on('error', onError);
   server.on('listening', onListening);
+
 });
+
 
 /**
  * Normalize a port into a number, string, or false.
@@ -80,12 +83,23 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+  let addr = server.address();
+  let bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   console.log('Listening on ' + bind);
 }
 
+process.on('SIGINT', () => { //initiated by PM2
+  console.log(`trying to close process ${process.pid}`);
+  models.sequelize.close();
+  server.close(() => {
+    console.log('server closed');
+    process.exit();
+  });
+  setTimeout(function () {
+    console.error("Could not close connections in time, forcefully shutting down");
+    process.exit()
+  }, 10 * 1000);
+});
