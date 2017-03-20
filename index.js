@@ -103,3 +103,18 @@ process.on('SIGINT', () => { //initiated by PM2
   //   process.exit()
   // }, 10 * 1000);
 });
+
+
+
+process.on('SIGKILL', () => { //initiated by PM2
+  console.log(`KILL PROCESS ${process.pid}`);
+  // models.sequelize.close();
+  server.close(() => {
+    console.log('server closed');
+    process.exit();
+  });
+  // setTimeout(function () {
+  //   console.error("Could not close connections in time, forcefully shutting down");
+  //   process.exit()
+  // }, 10 * 1000);
+});
