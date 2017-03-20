@@ -19,12 +19,12 @@ pipeline {
                 parallel (
                     "api": {
                         withEnv(["XUNIT_FILE=api-test.xml"]) {
-                            sh 'mocha tests/* --reporter xunit-file || true'
+                            sh 'mocha tests/api.spec.js --reporter xunit-file || true'
                         }
                     },
                     "database": {
                         withEnv(["XUNIT_FILE=database-test.xml"]) {
-                            sh 'mocha tests/* --reporter xunit-file || true'
+                            sh 'mocha tests/database.spec.js --reporter xunit-file || true'
                         }
                     }
                 )
@@ -68,10 +68,15 @@ pipeline {
                 branch 'development'
             }
             steps {
+                sh "cd /home/devhouse/spice-cakes"
+                sh "sudo pm2 stop ecosystem.config.js"
+                //sh "sudo pm2 stop SpiceCakes-API"
                 echo "deploy development"
                 echo "$WORKSPACE"
                 echo "${env.WORKSPACE}"
                 sh "rsync -arv ${env.WORKSPACE}/ /home/devhouse/spice-cakes"
+                sh "sudo pm2 start ecosystem.config.js"
+                //sh "sudo pm2 start SpiceCakes-API"
             }
         }
     }
