@@ -24,7 +24,7 @@ models.sequelize.sync().then(function () {
    */
   server.listen(port, function () {
     console.log('Express server listening on port ' + server.address().port);
-    process.send('ready'); //tell PM2 we are ready
+    // process.send('ready'); //tell PM2 we are ready
   });
   server.on('error', onError);
   server.on('listening', onListening);
@@ -94,7 +94,7 @@ function onListening() {
 process.on('SIGINT', () => { //initiated by PM2
   console.log(`trying to close process ${process.pid}`);
   // models.sequelize.close();
-  server.close(() => {
+  server.close((err) => {
     console.log('server closed');
     process.exit();
   });
