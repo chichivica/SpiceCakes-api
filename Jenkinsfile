@@ -18,19 +18,19 @@ pipeline {
             steps {
                 parallel (
                     "api": {
-                        withEnv(["XUNIT_FILE=test1.xml"]) {
+                        withEnv(["XUNIT_FILE=api-test.xml"]) {
                             sh 'mocha tests/* --reporter xunit-file || true'
                         }
                     },
                     "database": {
-                        withEnv(["XUNIT_FILE=test2.xml"]) {
+                        withEnv(["XUNIT_FILE=database-test.xml"]) {
                             sh 'mocha tests/* --reporter xunit-file || true'
                         }
                     }
                 )
             }
         }
-        stage('checking result') {
+        stage('checking test results') {
             steps {
                 parallel (
                     "api": {
@@ -39,7 +39,7 @@ pipeline {
                             [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
                             [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
                         tools: [
-                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'test1.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
+                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'api-test.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
                         ])
                     },
                     "database": {
@@ -48,7 +48,7 @@ pipeline {
                             [$class: 'FailedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '0', unstableThreshold: '0'],
                             [$class: 'SkippedThreshold', failureNewThreshold: '', failureThreshold: '', unstableNewThreshold: '', unstableThreshold: '']],
                         tools: [
-                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'test2.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
+                            [$class: 'JUnitType', deleteOutputFiles: false, failIfNotNew: false, pattern: 'database-test.xml', skipNoTestFiles: false, stopProcessingIfError: true]]
                         ])
                     }
 
