@@ -93,13 +93,13 @@ function onListening() {
 
 process.on('SIGINT', () => { //initiated by PM2
   console.log(`trying to close process ${process.pid}`);
-  models.sequelize.close();
+  // models.sequelize.close();
   server.close(() => {
     console.log('server closed');
     process.exit();
   });
-  setTimeout(function () {
-    console.error("Could not close connections in time, forcefully shutting down");
-    process.exit()
-  }, 10 * 1000);
+  // setTimeout(function () {
+  //   console.error("Could not close connections in time, forcefully shutting down");
+  //   process.exit()
+  // }, 10 * 1000);
 });
