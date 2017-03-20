@@ -12,8 +12,8 @@ module.exports = {
       env: {
         NODE_ENV: "development"
       },
-      listen_timeout: 1 << 30,
+      listen_timeout: 1073741824,
       wait_ready: true
-    },
+    }
   ]
 };
