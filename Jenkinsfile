@@ -61,7 +61,9 @@ pipeline {
             }
             steps {
                 echo 'deploy beta'
-                sh 'rsync -ar $WORKSPACE/ /home/devhouse/spice-cakes'
+                echo '$WORKSPACE'
+                echo '${env.WORKSPACE}'
+                sh 'rsync -arv ${env.WORKSPACE}/ /home/devhouse/spice-cakes'
             }
         }
         stage('deployment development') {
