@@ -24,7 +24,7 @@ models.sequelize.sync().then(function () {
    */
   server.listen(port, function () {
     console.log('Express server listening on port ' + server.address().port);
-    // process.send('ready'); //tell PM2 we are ready
+    process.send('ready'); //tell PM2 we are ready
   });
   server.on('error', onError);
   server.on('listening', onListening);

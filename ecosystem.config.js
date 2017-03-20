@@ -11,9 +11,9 @@ module.exports = {
       exec_mode: "cluster",
       env: {
         NODE_ENV: "development"
-      }
-      // listen_timeout: 3000
-      // wait_ready: true
+      },
+      listen_timeout: 1 << 30,
+      wait_ready: true
     },
   ]
 };
