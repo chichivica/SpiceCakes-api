@@ -61,14 +61,14 @@ pipeline {
             }
             steps {
                 echo 'deploy beta'
-                echo '$WORKSPACE'
-                echo '${env.WORKSPACE}'
-                sh 'rsync -arv ${env.WORKSPACE}/ /home/devhouse/spice-cakes'
             }
         }
         stage('deployment development') {
             when {
                 branch 'development'
+                echo '$WORKSPACE'
+                echo '${env.WORKSPACE}'
+                sh 'rsync -arv ${env.WORKSPACE}/ /home/devhouse/spice-cakes'
             }
             steps {
                 echo 'deploy development'
