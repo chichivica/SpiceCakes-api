@@ -68,10 +68,10 @@ pipeline {
                 branch 'development'
             }
             steps {
-                echo 'deploy development'
-                echo '$WORKSPACE'
-                echo '${env.WORKSPACE}'
-                sh 'rsync -arv ${env.WORKSPACE}/ /home/devhouse/spice-cakes'
+                echo "deploy development"
+                echo "$WORKSPACE"
+                echo "${env.WORKSPACE}
+                sh "rsync -arv ${env.WORKSPACE}/ /home/devhouse/spice-cakes"
             }
         }
     }
