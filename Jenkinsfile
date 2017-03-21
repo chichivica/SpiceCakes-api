@@ -59,10 +59,11 @@ pipeline {
             when {
                 branch 'beta'
             }
+            agent{
+                label 'beta'
+            }
             steps {
-                node('beta'){
-                    sh 'mkdir /home/devhouse/spice-cakes'
-                }
+                sh 'mkdir /home/devhouse/spice-cakes'
                 echo 'deploy beta'
             }
         }
