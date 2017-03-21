@@ -10,7 +10,7 @@ module.exports = {
       instances: "MAX",
       exec_mode: "cluster",
       listen_timeout: 40000,
-      wait_ready: true,
+      wait_ready: true, //for pm2 graceful start
       env: {
         NODE_ENV: "development"
       }

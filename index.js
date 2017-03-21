@@ -93,8 +93,8 @@ function onListening() {
 
 process.on('SIGINT', () => { //initiated by PM2
   console.log(`trying to close process ${process.pid}`);
-  models.sequelize.close();
   server.close((err) => {
+    models.sequelize.close();
     console.log('server closed');
     process.exit();
   });
@@ -105,18 +105,16 @@ process.on('SIGINT', () => { //initiated by PM2
 });
 
 
-process.on('message', function(msg) {
+process.on('message', function (msg) {
   if (msg == 'shutdown') {
     console.log('Closing all connections...');
-
-    models.sequelize.close();
-
     server.close((err) => {
+      models.sequelize.close();
       console.log('server closed');
       process.exit();
     });
 
-    setTimeout(function() {
+    setTimeout(function () {
       console.log('Finished closing connections');
       process.exit(0);
     }, 1500);

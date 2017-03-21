@@ -60,6 +60,9 @@ pipeline {
                 branch 'beta'
             }
             steps {
+                node('beta'){
+                    sh 'mkdir /home/devhouse/spice-cakes'
+                }
                 echo 'deploy beta'
             }
         }
