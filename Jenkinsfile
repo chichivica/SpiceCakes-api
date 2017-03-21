@@ -63,6 +63,7 @@ pipeline {
                 label 'beta'
             }
             steps {
+                sh 'mkdir /hove/devhouse/spice-cakes'
                 echo 'deploy beta'
             }
         }
