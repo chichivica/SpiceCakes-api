@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'мастер'
     stages {
         stage('fetch'){
             steps {
